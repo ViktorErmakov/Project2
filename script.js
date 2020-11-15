@@ -11,29 +11,25 @@ const personalMovieDb = {
 
 for (let i = 1; i < 3; i++) {
     
-    const film = prompt('Один из последних просмотренных фильмов?' + i, '');
-    const star = prompt('На сколько оцените его?' + i, '');
+    const film = prompt('Один из последних просмотренных фильмов?' + i, ''),
+          star = prompt('На сколько оцените его?' + i, '');
     
-    if (film == '' || star == '') {
-        i=i-1;
-        continue;
-    } else if (film == null || star == null) {
-        i=i-1;
-        continue;
-    } else if (film.length > 50 || star.length > 50) {
-        i=i-1;
-        continue;
+    if (film == '' || star == '' || film == null || star == null || film.length > 50) {
+        i--;
+        console.log('Error');
     } else {
-        console.log('не попал никуда');
+        personalMovieDb.movies[film] = star;
+        console.log('done');
     }
-   
-    personalMovieDb.movies[film] = star;
     
 }
 if (personalMovieDb.count < 10 ) {
-    alert('Просмотрено довольно мало фильмов!', '');    
+    alert('Просмотрено довольно мало фильмов!');    
+    console.log(personalMovieDb.count);
 } else if (personalMovieDb.count > 10 || personalMovieDb.count < 30){
-    alert('Вы классический зритель!', ''); 
-} else { 
-    alert('Вы киноман!', '');
+    alert('Вы классический зритель!'); 
+} else if (personalMovieDb.count >= 30) {
+    alert('Вы киноман!');
+} else {
+    alert('Error');
 }
